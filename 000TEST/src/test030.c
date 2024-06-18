@@ -3,9 +3,9 @@
 #include <assert.h>
 #include <stdio.h>
 
-char *TrimStr(char str[], char ch) {
+char* TrimStr(char str[], char ch) {
   assert(str);
-  char *start = str;
+  char* start = str;
   int i = 0;
   int flag;
   while (str[i] != '\0') {
@@ -21,12 +21,13 @@ char *TrimStr(char str[], char ch) {
   return start;
 }
 int main() {
-  char str[] = "**a*bc**a*abb*cca**aab*bb**c*cc***";
+  char str[] =
+      "**a*bc**a*abb*cca**aab*bb**c*cc***";
   char ch;
   printf("前:%s\n", str);
   printf("输入:>");
   scanf("%c", &ch);
-  char *newStr = TrimStr(str, ch);
+  char* newStr = TrimStr(str, ch);
   printf("后:%s\n", newStr);
 
   return 0;

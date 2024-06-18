@@ -33,7 +33,7 @@ size_t Fib(size_t num) {
 }
 int main() {
   int i = 0;
-  for (i = 1; i < 123; i++) {
+  for (i = 1; i < 13; i++) {
     printf("%llu ", Fib(i));
   }
 
@@ -41,7 +41,8 @@ int main() {
   //   printf("输入:>");
   //   scanf("%d", &num);
 
-  //   printf("第%llu个斐波那契数是%llu\n", num, Fib(num));
+  //   printf("第%llu个斐波那契数是%llu\n", num,
+  //   Fib(num));
 
   return 0;
 }

@@ -16,7 +16,7 @@ int main() {
     if (str[i] == ' ') {
       spaces++;
     } else if ((str[i] >= 65 && str[i] <= 90) ||
-      (str[i] >= 97 && str[i] <= 122)) {
+               (str[i] >= 97 && str[i] <= 122)) {
       letter++;
     } else if (str[i] >= 48 && str[i] <= 57) {
       digit++;
@@ -25,8 +25,10 @@ int main() {
     }
   }
   printf("%s", str);
-  printf("letter = %d\nspaces = %d\ndigit = %d\nrests = %d\n", letter, spaces,
-    digit, rests);
+  printf(
+      "letter = %d\nspaces = %d\ndigit = "
+      "%d\nrests = %d\n",
+      letter, spaces, digit, rests);
 
   return 0;
 }

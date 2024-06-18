@@ -1,7 +1,8 @@
 // 题目：求1!+2!+3!+...+20!的和。
 
-#include <stdio.h>
 #include <assert.h>
+#include <stdio.h>
+
 
 // 递归
 size_t Factorial(int n) {

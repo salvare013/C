@@ -22,7 +22,8 @@ void DecomposeEvenNum(int evenNum) {
         if (IsPrime(k) == 1)
           prime2 = k;
         if (prime1 + prime2 == evenNum) {
-          printf("%d = %d + %d\n", evenNum, prime1, prime2);
+          printf("%d = %d + %d\n", evenNum,
+                 prime1, prime2);
           return;
         }
       }

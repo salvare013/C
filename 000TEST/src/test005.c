@@ -21,7 +21,8 @@ int main() {
     y = z;
     z = tmp;
   }
-  printf("这三个数由小到大依次为:%d %d %d\n", x, y, z);
+  printf("这三个数由小到大依次为:%d %d %d\n", x,
+         y, z);
 
   return 0;
 }

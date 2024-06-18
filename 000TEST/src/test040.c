@@ -15,7 +15,8 @@ int main(void) {
   int count = 0;
   count += 4;
   for (int i = 2; i < 8; i++) {
-    count += 4 * (Permutation(7, i - 1) - Permutation(6, i - 2));
+    count += 4 * (Permutation(7, i - 1) -
+                  Permutation(6, i - 2));
   }
   printf("count = %d\n", count);
 

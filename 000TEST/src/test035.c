@@ -25,7 +25,8 @@ int main() {
     }
     for (int i = 0; i <= n; i++) {
       if (i > n / 2)
-        printf("%-6llu", CombinatorialNum(n, n - i));
+        printf("%-6llu",
+               CombinatorialNum(n, n - i));
       else
         printf("%-6llu", CombinatorialNum(n, i));
     }

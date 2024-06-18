@@ -8,8 +8,8 @@
 
 int main() {
   system("chcp 437");
-  char black = 176;
-  char white = 219;
+  char black = (char)176;
+  char white = (char)219;
   int i, j;
   for (i = 0; i < 8; i++) {
     for (j = 0; j < 8; j++) {

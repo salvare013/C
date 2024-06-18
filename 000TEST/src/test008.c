@@ -7,8 +7,8 @@
 
 int main() {
   int i, j, k;
-  char dollar = 36;
-  char black = 176;
+  char dollar = (char)36;
+  char black = (char)176;
   system("chcp 437");
   printf(" %c%c\n", dollar, dollar);
   for (i = 0; i < STAIRS; i++) {

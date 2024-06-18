@@ -11,29 +11,34 @@
 
 // 我写的代码真牛逼!!!
 double BonusSum(double profit) {
-    if (profit <= 10.0) {
-        return profit * 0.1;
-    } else if (profit <= 20.0) {
-        return (profit - 10.0) * 0.075 + BonusSum(10.0);
-    } else if (profit <= 40.0) {
-        return (profit - 20.0) * 0.05 + BonusSum(20.0);
-    } else if (profit <= 60.0) {
-        return (profit - 40.0) * 0.03 + BonusSum(40.0);
-    } else if (profit <= 100.0) {
-        return (profit - 60.0) * 0.015 + BonusSum(60.0);
-    } else {
-        return (profit - 100.0) * 0.01 + BonusSum(100.0);
-    }
+  if (profit <= 10.0) {
+    return profit * 0.1;
+  } else if (profit <= 20.0) {
+    return (profit - 10.0) * 0.075 +
+           BonusSum(10.0);
+  } else if (profit <= 40.0) {
+    return (profit - 20.0) * 0.05 +
+           BonusSum(20.0);
+  } else if (profit <= 60.0) {
+    return (profit - 40.0) * 0.03 +
+           BonusSum(40.0);
+  } else if (profit <= 100.0) {
+    return (profit - 60.0) * 0.015 +
+           BonusSum(60.0);
+  } else {
+    return (profit - 100.0) * 0.01 +
+           BonusSum(100.0);
+  }
 }
 
 int main() {
-    double bonus;  // 奖金
-    double profit; // 利润
+  double bonus;   // 奖金
+  double profit;  // 利润
 
-    printf("输入利润(万元):>");
-    scanf("%lf", &profit);
-    bonus = BonusSum(profit);
-    printf("bonus = %.2lf (万元)\n", bonus);
+  printf("输入利润(万元):>");
+  scanf("%lf", &profit);
+  bonus = BonusSum(profit);
+  printf("bonus = %.2lf (万元)\n", bonus);
 
-    return 0;
+  return 0;
 }

@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-#define N 3
+#define PEOPLE 3
 
 int main() {
   int matrix[PEOPLE][PEOPLE];

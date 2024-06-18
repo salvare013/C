@@ -5,9 +5,9 @@
 #include <stdio.h>
 #include <string.h>
 
-char *ReverseStr(char *str, int len) {
+char* ReverseStr(char* str, int len) {
   assert(str);
-  char *start = str;
+  char* start = str;
   for (int i = 0; i <= len / 2 - 1; i++) {
     char tmp = *(str + i);
     *(str + i) = *(str + len - 1 - i);
@@ -22,7 +22,7 @@ int main() {
   scanf("%s", str);
   int len = strlen(str);
   printf("前:%s\n", str);
-  char *newStr = ReverseStr(str, len);
+  char* newStr = ReverseStr(str, len);
   printf("后:%s\n", newStr);
 
   return 0;

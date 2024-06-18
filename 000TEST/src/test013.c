@@ -9,7 +9,9 @@ int main() {
   char grade;
   printf("输入:>");
   scanf("%d", &score);
-  grade = (score >= 90 ? 'A' : (score >= 60 ? 'B' : 'C'));
+  grade =
+      (score >= 90 ? 'A'
+                   : (score >= 60 ? 'B' : 'C'));
   printf("grade = %c\n", grade);
 
   return 0;

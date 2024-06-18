@@ -16,8 +16,8 @@ int main() {
     }
     n--;
   }
-  printf("distance = %lf(m)\nheight = %lf(m)\n", distance, height);
+  printf("distance = %lf(m)\nheight = %lf(m)\n",
+         distance, height);
 
   return 0;
 }
-

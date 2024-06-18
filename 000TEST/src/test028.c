@@ -1,8 +1,8 @@
 // 题目：一个5位数，判断它是不是回文数。
 // 如12321是回文数，个位与万位相同，十位与千位相同。
 
-#include <stdio.h>
 #include <assert.h>
+#include <stdio.h>
 
 int IsPalindromicNum(int num) {
   assert(num > 10000 && num < 100000);
