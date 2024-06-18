@@ -12,9 +12,9 @@ set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 # 库文件生成路径
 set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
 # 链接源文件生成程序
-# add_subdirectory(./src)
+add_subdirectory(./src)
 # 链接库生成程序
-add_subdirectory(./lib)
+# add_subdirectory(./lib)
 
 
 # 生成库
