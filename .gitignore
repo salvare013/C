@@ -1,0 +1,9 @@
+# 忽略的文件
+# .gitignore
+
+# 忽略的文件夹
+.vscode
+build
+bin
+CodePng
+.cache
