@@ -5,7 +5,6 @@
 // 它同样把多的一个扔入海中，拿走了一份，
 // 第三、第四、第五只猴子都是这样做的，
 // 问海滩上原来"最少"有多少个桃子？
-// 答案应为>3121
 
 #include <stdio.h>
 
@@ -23,7 +22,7 @@ int main(void) {
       sum = (sum / 4) * 5 + 1;
     }
   }
-  printf("min_sum = %d\n", sum);
+  printf("原来最少有%d个桃子\n", sum);
 
   return 0;
 }
