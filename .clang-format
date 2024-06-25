@@ -1,3 +1,4 @@
 BasedOnStyle:    chromium
 IndentWidth:     2
 ColumnLimit:     49
+PointerAlignment: Right
