@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include "str.h"
 
 #define SZ(X) sizeof((X))
