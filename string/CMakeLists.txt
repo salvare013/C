@@ -1,5 +1,5 @@
 # 设置cmake最低版本
-cmake_minimum_required(VERSION 3.30)
+cmake_minimum_required(VERSION 3.22...3.30 FATAL_ERROR)
 # 设置项目名
 get_filename_component(PROJECT_NAME ${CMAKE_SOURCE_DIR} NAME)
 project(${PROJECT_NAME} C)
