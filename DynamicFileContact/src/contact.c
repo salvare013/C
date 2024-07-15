@@ -1,14 +1,13 @@
 #include "contact.h"
 
-static void LoadCon(Contact* ps) {
+static void LoadCon(Contact *ps) {
   Information tmp = {0};
-  FILE* pfRead = fopen("contact.txt", "rb");
+  FILE *pfRead = fopen("contact.txt", "rb");
   if (pfRead == NULL) {
     printf("LoadCon::%s\n", strerror(errno));
     return;
   }
-  while (fread(&tmp, sizeof(Information), 1,
-               pfRead)) {
+  while (fread(&tmp, sizeof(Information), 1, pfRead)) {
     if (1 == CheckCapacity(ps)) {
       ps->data[ps->size] = tmp;
       ps->size++;
@@ -18,7 +17,7 @@ static void LoadCon(Contact* ps) {
   pfRead = NULL;
   printf("加载成功!\n");
 }
-void InitContact(struct Contact* ps) {
+void InitContact(struct Contact *ps) {
   // ps->data = (Information *)malloc(DEFAULT_SZ
   // * sizeof(Information));
   ps->data = MALLOC(Information, DEFAULT_SZ);
@@ -29,13 +28,13 @@ void InitContact(struct Contact* ps) {
   ps->capacity = DEFAULT_SZ;
   LoadCon(ps);
 }
-int CheckCapacity(Contact* ps) {
+int CheckCapacity(Contact *ps) {
   if (ps->size == ps->capacity) {
     // Information *ptr = (Information
     // *)realloc(ps->data, (ps->capacity + 2) *
     // sizeof(Information));
-    Information* ptr = REALLOC(
-        Information, ps->data, 2 * ps->capacity);
+    Information *ptr =
+        REALLOC(Information, ps->data, 2 * ps->capacity);
     if (ptr == NULL) {
       printf("扩容失败!\n");
       return 0;
@@ -46,7 +45,7 @@ int CheckCapacity(Contact* ps) {
   }
   return 1;
 }
-void AddCon(struct Contact* ps) {
+void AddCon(struct Contact *ps) {
   if (1 == CheckCapacity(ps)) {
     printf("请输入姓名:>");
     scanf("%s", ps->data[ps->size].name);
@@ -66,28 +65,22 @@ void AddCon(struct Contact* ps) {
   }
   printf("添加失败!\n");
 }
-void ShowCon(const struct Contact* ps) {
+void ShowCon(const struct Contact *ps) {
   if (ps->size == 0) {
     printf("通讯录中没有联系人!\n");
     return;
   }
   int i = 0;
-  printf(
-      "%-10s\t%-4s\t%-4s\t%-12s\t%-11s\t%-30s\n",
-      "姓名", "年龄", "性别", "电话", "QQ号",
-      "住址");
+  printf("%-20s\t%-4s\t%-8s\t%-12s\t%-11s\t%-30s\n", "姓名", "年龄",
+         "性别", "电话", "QQ号", "住址");
   for (i = 0; i < ps->size; i++) {
-    printf(
-        "%-10s\t%-4d\t%-4s\t%-12s\t%-11s\t%-"
-        "30s\n",
-        ps->data[i].name, ps->data[i].age,
-        ps->data[i].sex, ps->data[i].tele,
-        ps->data[i].qq, ps->data[i].addr);
+    printf("%-20s\t%-4d\t%-8s\t%-12s\t%-11s\t%-30s\n",
+           ps->data[i].name, ps->data[i].age, ps->data[i].sex,
+           ps->data[i].tele, ps->data[i].qq, ps->data[i].addr);
   }
 }
-static int FindByName(
-    const struct Contact* ps,
-    const char name[MAX_NAME]) {
+static int FindByName(const struct Contact *ps,
+                      const char name[MAX_NAME]) {
   int i = 0;
   for (i = 0; i < ps->size; i++) {
     if (0 == strcmp(ps->data[i].name, name)) {
@@ -96,7 +89,7 @@ static int FindByName(
   }
   return -1;
 }
-void DelCon(struct Contact* ps) {
+void DelCon(struct Contact *ps) {
   char name[MAX_NAME];
   printf("请输入要删除的联系人姓名:>");
   scanf("%s", name);
@@ -112,7 +105,7 @@ void DelCon(struct Contact* ps) {
   ps->size--;
   printf("删除成功!\n");
 }
-void SearchCon(const struct Contact* ps) {
+void SearchCon(const struct Contact *ps) {
   char name[MAX_NAME];
   printf("请输入要查找的联系人姓名:>");
   scanf("%s", name);
@@ -121,15 +114,11 @@ void SearchCon(const struct Contact* ps) {
     printf("通讯录中没有该联系人!\n");
     return;
   }
-  printf(
-      "%-10s\t%-4s\t%-4s\t%-12s\t%-11s\t%-30s\n",
-      "姓名", "年龄", "性别", "电话", "QQ号",
-      "住址");
-  printf(
-      "%-10s\t%-4d\t%-4s\t%-12s\t%-11s\t%-30s\n",
-      ps->data[pos].name, ps->data[pos].age,
-      ps->data[pos].sex, ps->data[pos].tele,
-      ps->data[pos].qq, ps->data[pos].addr);
+  printf("%-10s\t%-4s\t%-4s\t%-12s\t%-11s\t%-30s\n", "姓名", "年龄",
+         "性别", "电话", "QQ号", "住址");
+  printf("%-10s\t%-4d\t%-4s\t%-12s\t%-11s\t%-30s\n",
+         ps->data[pos].name, ps->data[pos].age, ps->data[pos].sex,
+         ps->data[pos].tele, ps->data[pos].qq, ps->data[pos].addr);
 }
 static void ModifyMenu() {
   printf(
@@ -148,7 +137,7 @@ static void ModifyMenu() {
       "***************************************"
       "\n");
 }
-void ModifyCon(struct Contact* ps) {
+void ModifyCon(struct Contact *ps) {
   char name[MAX_NAME];
   printf("请输入要修改的联系人姓名:>");
   scanf("%s", name);
@@ -202,7 +191,7 @@ void ModifyCon(struct Contact* ps) {
     }
   } while (modify_option);
 }
-void SortCon(struct Contact* ps) {
+void SortCon(struct Contact *ps) {
   if (ps->size == 0) {
     printf("通讯录中没有联系人!\n");
     return;
@@ -212,8 +201,7 @@ void SortCon(struct Contact* ps) {
   for (i = 0; i < ps->size - 1; i++) {
     int flag = 1;
     for (j = 0; j < ps->size - 1 - i; j++) {
-      if (strcmp(ps->data[j].name,
-                 ps->data[j + 1].name) > 0) {
+      if (strcmp(ps->data[j].name, ps->data[j + 1].name) > 0) {
         struct Information tmp = ps->data[j];
         ps->data[j] = ps->data[j + 1];
         ps->data[j + 1] = tmp;
@@ -226,23 +214,22 @@ void SortCon(struct Contact* ps) {
   }
   printf("排序成功!\n");
 }
-void DestroyCon(Contact* ps) {
+void DestroyCon(Contact *ps) {
   if (ps->data == NULL) {
     return;
   }
   free(ps->data);
   ps->data = NULL;
 }
-void SaveCon(Contact* ps) {
-  FILE* pfWrite = fopen("contact.txt", "wb");
+void SaveCon(Contact *ps) {
+  FILE *pfWrite = fopen("contact.txt", "wb");
   if (pfWrite == NULL) {
     printf("SaveCon::%s\n", strerror(errno));
     return;
   }
   int i = 0;
   for (i = 0; i < ps->size; i++) {
-    fwrite(&ps->data[i], sizeof(Information), 1,
-           pfWrite);
+    fwrite(&ps->data[i], sizeof(Information), 1, pfWrite);
   }
   fclose(pfWrite);
   pfWrite = NULL;

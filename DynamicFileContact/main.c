@@ -1,20 +1,14 @@
 #include "contact.h"
 
 static void Menu() {
-  printf(
-      "*************************************\n");
-  printf(
-      "***      1.add      2.del         ***\n");
-  printf(
-      "***      3.search   4.modify      ***\n");
-  printf(
-      "***      5.show     6.sort        ***\n");
-  printf(
-      "***      7.save     0.exit        ***\n");
-  printf(
-      "*************************************\n");
+  printf("*************************************\n");
+  printf("***      1.add      2.del         ***\n");
+  printf("***      3.search   4.modify      ***\n");
+  printf("***      5.show     6.sort        ***\n");
+  printf("***      7.save     0.exit        ***\n");
+  printf("*************************************\n");
 }
-void test() {
+int main() {
   int input = 0;
   struct Contact con;
   InitContact(&con);
@@ -60,10 +54,6 @@ void test() {
         break;
     }
   } while (input);
-}
-
-int main() {
-  test();
 
   return 0;
 }
