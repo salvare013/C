@@ -15,10 +15,10 @@ set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
 
 
 # 链接源文件生成程序
-# add_subdirectory(./src)
+add_subdirectory(./src)
 
 # 链接库文件生成程序
-add_subdirectory(./lib)
+# add_subdirectory(./lib)
 
 # 手动添加生成程序
 
