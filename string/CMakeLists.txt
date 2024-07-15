@@ -15,7 +15,7 @@ set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
 
 
 # 链接源文件生成程序
-add_subdirectory(./src)
+# add_subdirectory(./src)
 
 # 链接库文件生成程序
 # add_subdirectory(./lib)
@@ -41,11 +41,11 @@ add_subdirectory(./src)
 # # 获取源文件列表
 # aux_source_directory(${PROJECT_SOURCE_DIR}/src SRC_LIST)
 
-# 用源文件列表生成静态库
+# # 用源文件列表生成静态库
 
 # add_library(PROJECT_STATIC STATIC ${SRC_LIST})
 # set_target_properties(PROJECT_STATIC PROPERTIES OUTPUT_NAME ${PROJECT_NAME})
 
-# 用源文件列表生成共享库
+# # 用源文件列表生成共享库
 # add_library(PROJECT_SHARED SHARED ${SRC_LIST})
 # set_target_properties(PROJECT_SHARED PROPERTIES OUTPUT_NAME ${PROJECT_NAME})
