@@ -15,5 +15,5 @@ char *StrNCpy(char *dest,
               const char *src,
               unsigned int count,
               size_t destSize);
-const char *StrStr(const char *supStr, const char *subStr);
+char *StrStr(const char *supStr, const char *subStr);
 int StrNStr(const char *supStr, const char *subStr);

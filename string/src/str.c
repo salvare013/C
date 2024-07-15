@@ -7,12 +7,9 @@ int StrLen(const char *str) {
   }
   return len;
 }
-char *StrCat(char *front,
-             const char *back,
-             size_t frontSize) {
+char *StrCat(char *front, const char *back, size_t frontSize) {
   assert(front && back);
-  assert(frontSize >
-         (StrLen(front) + StrLen(back)));
+  assert(frontSize > (StrLen(front) + StrLen(back)));
   char *start = front;
   while (*front) {
     front++;
@@ -22,8 +19,7 @@ char *StrCat(char *front,
   }
   return start;
 }
-int StrCmp(const char *_str1,
-           const char *_str2) {
+int StrCmp(const char *_str1, const char *_str2) {
   assert(_str1 && _str2);
   while (*_str1 == *_str2) {
     if (*_str1 == '\0') {
@@ -34,9 +30,7 @@ int StrCmp(const char *_str1,
   }
   return (*_str1 - *_str2);
 }
-char *StrCpy(char *dest,
-             const char *src,
-             size_t destSize) {
+char *StrCpy(char *dest, const char *src, size_t destSize) {
   assert(dest && src);
   assert(destSize > StrLen(src));
   char *start = dest;
@@ -96,8 +90,7 @@ char *StrNCpy(char *dest,
   }
   return start;
 }
-const char *StrStr(const char *supStr,
-                   const char *subStr) {
+char *StrStr(const char *supStr, const char *subStr) {
   assert(supStr && subStr);
   assert(StrLen(supStr) > StrLen(subStr));
   const char *sup = supStr;
@@ -108,7 +101,7 @@ const char *StrStr(const char *supStr,
       subStr++;
     }
     if (*subStr == '\0') {
-      return sup;
+      return (char *)sup;
     } else {
       supStr = ++sup;
       subStr = sub;
@@ -116,8 +109,7 @@ const char *StrStr(const char *supStr,
   }
   return NULL;
 }
-int StrNStr(const char *supStr,
-            const char *subStr) {
+int StrNStr(const char *supStr, const char *subStr) {
   assert(supStr && subStr);
   assert(StrLen(supStr) > StrLen(subStr));
   int count = 0;
