@@ -27,7 +27,7 @@ add_subdirectory(./src)
 # target_link_libraries(${PROJECT_NAME} ${PROJECT_SOURCE_DIR}/lib/MyString.lib)
 
 
-# 生成库(用GCC生成动态库)
+# 生成库(Windows用GCC生成动态库)
 
 # 手动添加生成静态库
 
@@ -38,10 +38,10 @@ add_subdirectory(./src)
 # add_library(PROJECT_SHARED SHARED ./str.c)
 # set_target_properties(PROJECT_SHARED PROPERTIES OUTPUT_NAME ${PROJECT_NAME})
 
-# # 获取源文件列表
+# # # 获取源文件列表
 # aux_source_directory(${PROJECT_SOURCE_DIR}/src SRC_LIST)
 
-# # 用源文件列表生成静态库
+# # # 用源文件列表生成静态库
 
 # add_library(PROJECT_STATIC STATIC ${SRC_LIST})
 # set_target_properties(PROJECT_STATIC PROPERTIES OUTPUT_NAME ${PROJECT_NAME})
