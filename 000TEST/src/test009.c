@@ -34,7 +34,7 @@ size_t Fib(size_t num) {
 int main() {
   int i = 0;
   for (i = 1; i < 13; i++) {
-    printf("%llu ", Fib(i));
+    printf("%zu ", Fib(i));
   }
 
   //   size_t num;
