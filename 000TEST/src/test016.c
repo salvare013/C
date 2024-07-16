@@ -20,7 +20,7 @@ int main() {
     sum += Power(a, n);
     n--;
   }
-  printf("sum = %llu\n", sum);
+  printf("sum = %zu\n", sum);
 
   return 0;
 }

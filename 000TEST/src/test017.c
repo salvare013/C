@@ -21,8 +21,7 @@ int main() {
     sum += GrowDigit(a, n);
     n--;
   }
-  printf("sum = a + aa + aaa +... = %lld\n",
-         sum);
+  printf("sum = a + aa + aaa +... = %lld\n", sum);
 
   return 0;
 }

@@ -13,8 +13,7 @@ int main() {
   for (i = 1; i < 10000; i++) {
     x = sqrt(i + 100);
     y = sqrt(i + 100 + 168);
-    if (SQUARE(x) == (i + 100) &&
-        SQUARE(y) == (i + 268))
+    if (SQUARE(x) == (i + 100) && SQUARE(y) == (i + 268))
       printf("%d ", i);
   }
 
