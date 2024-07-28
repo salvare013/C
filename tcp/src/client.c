@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include "inc.h"
 int main(void) {
   //  1. 创建套接字
@@ -20,9 +21,9 @@ int main(void) {
   }
   //  3.开始通讯 send recv
   while (1) {
-    char sBuf[1024] = {0};
+    char sBuf[1024];
     printf("输入>>>");
-    scanf("%s", sBuf);
+    fgets(sBuf, 1024, stdin);
     send(clientSocket, sBuf, strlen(sBuf), 0);
     char rBuf[1024] = {0};
     int ret = recv(clientSocket, rBuf, 1024, 0);
