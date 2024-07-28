@@ -40,6 +40,7 @@ int main() {
   printf("%d = 1 * ", num);
   _Factorization(num);
   // Factorization(num);
+  printf("\n");
 
   return 0;
 }
