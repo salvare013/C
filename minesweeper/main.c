@@ -1,14 +1,10 @@
 #include "game.h"
 
 void Menu() {
-  printf(
-      "************************************\n");
-  printf(
-      "*******      1.play       **********\n");
-  printf(
-      "*******      0.exit       **********\n");
-  printf(
-      "************************************\n");
+  printf("************************************\n");
+  printf("*******      1.play       **********\n");
+  printf("*******      0.exit       **********\n");
+  printf("************************************\n");
 }
 void Game() {
   // 判断游戏状态
@@ -37,7 +33,7 @@ void Game() {
     printf("你是我的YYDS!\n");
   }
 }
-void test() {
+int main() {
   int input = 0;
   srand((unsigned int)time(NULL));
   do {
@@ -56,9 +52,5 @@ void test() {
         break;
     }
   } while (input);
-}
-int main() {
-  test();
-
   return 0;
 }

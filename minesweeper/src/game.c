@@ -12,9 +12,7 @@ void InitBoard(char board[ROWS][COLS],
     }
   }
 }
-void DisplayBoard(char board[ROWS][COLS],
-                  int row,
-                  int col) {
+void DisplayBoard(char board[ROWS][COLS], int row, int col) {
   int i = 0;
   int j = 0;
   // 打印列号
@@ -35,9 +33,7 @@ void DisplayBoard(char board[ROWS][COLS],
   }
   printf("\n");
 }
-void SetMine(char mine[ROWS][COLS],
-             int row,
-             int col) {
+void SetMine(char mine[ROWS][COLS], int row, int col) {
   int count = EASY_COUNT;
   while (count) {
     int x = rand() % col + 1;
@@ -48,14 +44,10 @@ void SetMine(char mine[ROWS][COLS],
     }
   }
 }
-int GetMineCount(char mine[ROWS][COLS],
-                 int x,
-                 int y) {
-  return mine[y + 1][x - 1] + mine[y + 1][x] +
-         mine[y + 1][x + 1] + mine[y][x - 1] +
-         mine[y][x + 1] + mine[y - 1][x - 1] +
-         mine[y - 1][x] + mine[y - 1][x + 1] -
-         8 * '0';
+int GetMineCount(char mine[ROWS][COLS], int x, int y) {
+  return mine[y + 1][x - 1] + mine[y + 1][x] + mine[y + 1][x + 1] +
+         mine[y][x - 1] + mine[y][x + 1] + mine[y - 1][x - 1] +
+         mine[y - 1][x] + mine[y - 1][x + 1] - 8 * '0';
 }
 char FindMine(char mine[ROWS][COLS],
               char show[ROWS][COLS],
@@ -69,8 +61,7 @@ char FindMine(char mine[ROWS][COLS],
     printf("请输入要排查雷的横,纵坐标:>");
     scanf("%d%d", &x, &y);
     // 判断坐标合法性
-    if (x >= 1 && x <= col && y >= 1 &&
-        y <= row) {
+    if (x >= 1 && x <= col && y >= 1 && y <= row) {
       // 踩雷
       if (mine[y][x] == '1') {
         return mine[y][x];

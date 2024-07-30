@@ -14,16 +14,9 @@
 
 // 函数声明
 
-void InitBoard(char board[ROWS][COLS],
-               int rows,
-               int cols,
-               char set);
-void DisplayBoard(char board[ROWS][COLS],
-                  int row,
-                  int col);
-void SetMine(char mine[ROWS][COLS],
-             int row,
-             int col);
+void InitBoard(char board[ROWS][COLS], int rows, int cols, char set);
+void DisplayBoard(char board[ROWS][COLS], int row, int col);
+void SetMine(char mine[ROWS][COLS], int row, int col);
 
 // 返回两种游戏状态
 // 失败	'1'
