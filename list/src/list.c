@@ -1,4 +1,6 @@
 #include "list.h"
+#include <assert.h>
+#include <stdlib.h>
 
 void InitList(List *plist) {
   assert(plist);
@@ -74,17 +76,29 @@ void PopFront(List *plist) {
   }
   plist->size--;
 }
-void PrintList(const List *plist) {
+#ifdef FLOAT_LIST_DATA_TYPE
+void RandomInsert(List *plist, size_t count) {
   assert(plist);
-  if (plist->size > 0) {
-    for (int i = 0; i < plist->size; i++) {
-      printf("%d ", plist->data[i]);
+  if (1 == CheckCapacity(plist, count)) {
+    for (int i = 0; i < count; i++) {
+      plist->data[i] = (rand() + 1.0) / (float)RAND_MAX;
+      plist->size++;
     }
-    printf("\n");
-  } else {
-    printf("无数据!\n");
   }
 }
+#endif
+#ifdef INT_LIST_DATA_TYPE
+void RandomInsert(List *plist, size_t count, size_t maxNum) {
+  assert(plist);
+  assert(maxNum + 1 <= RAND_MAX);
+  if (1 == CheckCapacity(plist, count)) {
+    for (int i = 0; i < count; i++) {
+      plist->data[i] = rand() % (maxNum + 1);
+      plist->size++;
+    }
+  }
+}
+#endif
 void SortList(List *plist) {
   for (int i = 0; i < plist->size - 1; i++) {
     int flag = 1;
@@ -101,16 +115,23 @@ void SortList(List *plist) {
     }
   }
 }
-void RandomInsert(List *plist, size_t count, size_t maxNum) {
+void PrintList(const List *plist) {
   assert(plist);
-  srand((unsigned int)time(NULL));
-  if (1 == CheckCapacity(plist, count)) {
-    for (int i = 0; i < count; i++) {
-      plist->data[i] = rand() % (maxNum + 1);
-      plist->size++;
+  if (plist->size > 0) {
+    for (int i = 0; i < plist->size; i++) {
+#ifdef INT_LIST_DATA_TYPE
+      printf("%d ", plist->data[i]);
+#endif
+#ifdef FLOAT_LIST_DATA_TYPE
+      printf("%.3f ", plist->data[i]);
+#endif
     }
+    printf("\n");
+  } else {
+    printf("无数据!\n");
   }
 }
+
 int FindList(const List *plist, listData_t target) {
   assert(plist);
   for (int i = 0; i < plist->size; i++) {
