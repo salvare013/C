@@ -34,7 +34,6 @@ void RandomInsertDoubleData(List *plist, size_t count);
 void TraverseDoubleData(const List *plist);
 void RandomInsertCharData(List *plist, size_t count);
 void TraverseCharData(const List *plist);
-
 void PushBack(List *plist, T data, const char *dataType);
 #define mPushBack(pLIST, DATA)                    \
   _Generic(DATA,                                  \

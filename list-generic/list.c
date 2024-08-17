@@ -1,6 +1,4 @@
 #include "list.h"
-#include <assert.h>
-#include <string.h>
 
 void InitList(List *plist) {
   assert(plist);
@@ -86,7 +84,7 @@ void TraverseIntData(const List *plist) {
   assert(plist);
   for (int i = 0; i < plist->size; i++) {
     if (0 == strcmp("int", plist->data[i].type)) {
-      printf("%zu ", plist->data[i].data.i);
+      printf("%d ", plist->data[i].data.i);
     }
   }
   printf("\n");

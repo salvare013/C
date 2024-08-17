@@ -1,5 +1,3 @@
-#include <corecrt.h>
-#include <stdio.h>
 #include "list.h"
 
 int main(void) {
@@ -19,14 +17,14 @@ int main(void) {
   PushFront(&list, (T)0, "int");
   PushFront(&list, (T)'a', "char");
 
-  // RandomInsertIntData(&list, 3, 3);
-  // TraverseIntData(&list);
+  RandomInsertIntData(&list, 3, 3);
+  TraverseIntData(&list);
 
-  // RandomInsertDoubleData(&list, 3);
-  // TraverseDoubleData(&list);
+  RandomInsertDoubleData(&list, 3);
+  TraverseDoubleData(&list);
 
-  // RandomInsertCharData(&list, 3);
-  // TraverseCharData(&list);
+  RandomInsertCharData(&list, 3);
+  TraverseCharData(&list);
 
   PrintList(&list);
 
