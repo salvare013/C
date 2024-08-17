@@ -1,14 +1,14 @@
 #pragma once
 
 // 包含库函数
-#include <errno.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include <errno.h>   // IWYU pragma: export
+#include <stdio.h>   // IWYU pragma: export
+#include <stdlib.h>  // IWYU pragma: export
+#include <string.h>  // IWYU pragma: export
 
 // 宏
 #define MALLOC(TYPE, SIZE) ((TYPE *)malloc(SIZE * sizeof(TYPE)))
-#define REALLOC(TYPE, PTR, NEW_SIZE)                                           \
+#define REALLOC(TYPE, PTR, NEW_SIZE) \
   ((TYPE *)realloc(PTR, (NEW_SIZE) * sizeof(TYPE)))
 
 // 定义常量

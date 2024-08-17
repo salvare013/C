@@ -27,43 +27,34 @@ set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
 #############################################################
 
 # 链接源文件生成程序
-add_subdirectory(./src)
+# add_subdirectory(./src)
 
 # # 链接库文件生成程序
-# add_subdirectory(./lib)
-
-# # # Linux下使用数学函数需要手动链接数学库
+add_subdirectory(./lib)
 
 # target_link_libraries(${PROJECT_NAME} m)
 
-
 #############################################################################
 
-# 生成库(Windows用GCC生成动态库)
-
-# 手动添加生成静态库
+# 手动添加生成库
 
 # add_library(PROJECT_STATIC STATIC src)
 # set_target_properties(PROJECT_STATIC PROPERTIES OUTPUT_NAME ${PROJECT_NAME})
 
-# 手动添加生成动态库
 # add_library(PROJECT_SHARED SHARED src)
 # set_target_properties(PROJECT_SHARED PROPERTIES OUTPUT_NAME ${PROJECT_NAME})
 
 ##############################################################################
 
-# # # # 获取源文件列表
-# aux_source_directory(${PROJECT_SOURCE_DIR}/src SRC_LIST)
+# 自动生成库
 
-# # # # 用源文件列表生成静态库
+aux_source_directory(${PROJECT_SOURCE_DIR}/src SRC_LIST)
 
-# add_library(PROJECT_STATIC STATIC ${SRC_LIST})
-# set_target_properties(PROJECT_STATIC PROPERTIES OUTPUT_NAME ${PROJECT_NAME})
+add_library(PROJECT_STATIC STATIC ${SRC_LIST})
+set_target_properties(PROJECT_STATIC PROPERTIES OUTPUT_NAME ${PROJECT_NAME})
 
-# # # 用源文件列表生成共享库
-
-# add_library(PROJECT_SHARED SHARED ${SRC_LIST})
-# set_target_properties(PROJECT_SHARED PROPERTIES OUTPUT_NAME ${PROJECT_NAME})
+add_library(PROJECT_SHARED SHARED ${SRC_LIST})
+set_target_properties(PROJECT_SHARED PROPERTIES OUTPUT_NAME ${PROJECT_NAME})
 
 ##############################################################################
 
@@ -73,7 +64,7 @@ add_subdirectory(./src)
 set(CPACK_PACKAGE_DIRECTORY "${PROJECT_SOURCE_DIR}/packages")
 
 # 指定CPack软件包生成器
-set(CPACK_GENERATOR "TGZ;DEB")
+set(CPACK_GENERATOR "NSIS")
 
 # 设置软件包的名称和版本
 set(PACKAGE_NAME ${PROJECT_NAME})
@@ -84,13 +75,10 @@ set(CPACK_PACKAGE_CONTACT "xmx <salvare00013@foxmail.com>")
 
 # 添加可执行文件、库文件等需要安装的文件
 install(TARGETS ${PROJECT_NAME} DESTINATION bin)
-# install(FILES YourLibrary.so DESTINATION lib)
-# install(FILES YourHeaderFile.h DESTINATION include)
-
-# 指定Debian打包时的软件包依赖
-# set(CPACK_DEBIAN_PACKAGE_CONTROL_EXTRA "Depends: ${CPACK_DEBIAN_PACKAGE_CONTROL_EXTRA}, your-dependency-package")
+# install(FILES  lib${PROJECT_NAME}.dll DESTINATION lib)
+# install(FILES  ${PROJECT_NAME}.h DESTINATION include)
 
 # 生成软件包所需的CPack配置文件(必须放在所有配置的最后!!!!!!!!!)
 include(CPack)
 
-###################################################################################################################
+###############################################################################
