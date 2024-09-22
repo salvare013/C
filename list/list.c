@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
 List *ListCreate(size_t dataSize) {
   List *list = (List *)malloc(sizeof(List));
@@ -172,4 +173,61 @@ void ListRandomInsertDoubleData(List *pList, size_t count) {
       pList->size++;
     }
   }
+}
+void ListDataModify(List *pList,
+                    size_t pos,
+                    void (*pfModify)(void *)) {
+  assert(pList && pfModify);
+  assert(pos < pList->size);
+  pfModify(pList->data + pList->dataSize * pos);
+}
+bool ListIsEmpty(List *pList) {
+  assert(pList);
+  if (0 == pList->size) {
+    return true;
+  } else {
+    return false;
+  }
+}
+bool ListReserve(List *pList, size_t size) {
+  assert(pList);
+  return CheckCapacity(pList, size);
+}
+size_t ListResize(List *pList, size_t size) {
+  assert(pList);
+  if (size <= pList->size) {
+    pList->size = size;
+  } else {
+    if (CheckCapacity(pList, size - pList->size)) {
+      memset(pList->data + pList->dataSize * pList->size, 0,
+             (size - pList->size) * pList->dataSize);
+      pList->size = size;
+    }
+  }
+  return pList->size;
+}
+void *ListDataAt(List *pList, size_t index) {
+  assert(pList);
+  assert(index < pList->size);
+  return pList->data + pList->dataSize * index;
+}
+void *ListHeadData(List *pList) {
+  assert(pList);
+  if (pList->size) {
+    return pList->data;
+  } else {
+    return NULL;
+  }
+}
+void *ListTailData(List *pList) {
+  assert(pList);
+  if (pList->size) {
+    return pList->data + pList->dataSize * (pList->size - 1);
+  } else {
+    return NULL;
+  }
+}
+void ListClear(List *pList) {
+  assert(pList);
+  pList->size = 0;
 }

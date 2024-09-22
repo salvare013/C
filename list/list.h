@@ -10,7 +10,9 @@ typedef struct {
   size_t size;
   size_t capacity;
 } List;
+
 #define DEFAULT_CAPACITY 4
+#define DRFPTR(type, ptr) (*(type *)ptr)
 
 List *ListCreate(size_t dataSize);
 #define mListCreate(TYPE) ListCreate(sizeof(TYPE))
@@ -30,3 +32,13 @@ void ListRandomInsertIntData(List *pList,
                              size_t maxNum);
 void ListSort(List *pList, int (*pfCmp)(const void *, const void *));
 void ListRandomInsertDoubleData(List *pList, size_t count);
+void ListDataModify(List *pList,
+                    size_t pos,
+                    void (*pfModify)(void *));
+bool ListIsEmpty(List *pList);
+bool ListReserve(List *pList, size_t size);
+size_t ListResize(List *pList, size_t size);
+void *ListDataAt(List *pList, size_t index);
+void *ListHeadData(List *pList);
+void *ListTailData(List *pList);
+void ListClear(List *pList);
