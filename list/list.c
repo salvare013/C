@@ -231,3 +231,14 @@ void ListClear(List *pList) {
   assert(pList);
   pList->size = 0;
 }
+size_t ListFindData(List *pList,
+                    const void *findData,
+                    int (*pfCmp)(const void *, const void *)) {
+  assert(pList && findData && pfCmp);
+  for (int i = 0; i < pList->size; i++) {
+    if (0 == pfCmp(findData, pList->data + pList->dataSize * i)) {
+      return i;
+    }
+  }
+  return pList->size;
+}

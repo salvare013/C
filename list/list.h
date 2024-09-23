@@ -42,3 +42,6 @@ void *ListDataAt(List *pList, size_t index);
 void *ListHeadData(List *pList);
 void *ListTailData(List *pList);
 void ListClear(List *pList);
+size_t ListFindData(List *pList,
+                    const void *findData,
+                    int (*pfCmp)(const void *, const void *));

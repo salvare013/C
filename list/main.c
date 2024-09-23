@@ -1,8 +1,17 @@
+#include <crtdefs.h>
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <time.h>
 #include "list.h"
 
+const void *SendData() {
+  static int data;
+  printf("输入>>>");
+  scanf("%d", &data);
+  return &data;
+}
 void ModifyInt(void *data) {
   int *d = (int *)data;
   *d = 666666;
@@ -31,29 +40,29 @@ void test_int() {
   printf("list size: %zu\n", ListSize(list));
   printf("list capacity: %zu\n", ListCapacity(list));
 
-  for (int i = 0, data; i < 3; i++) {
-    data = rand() % 10;
-    ListPushBack(list, &data);
-  }
-  ListPrint(list, PrintInt);
+  // for (int i = 0, data; i < 3; i++) {
+  //   data = rand() % 10;
+  //   ListPushBack(list, &data);
+  // }
+  // ListPrint(list, PrintInt);
 
-  for (int i = 0, data; i < 3; i++) {
-    data = rand() % 10;
-    ListPushFront(list, &data);
-  }
-  int a = 666;
-  ListPosInsert(list, 2, &a);
+  // for (int i = 0, data; i < 3; i++) {
+  //   data = rand() % 10;
+  //   ListPushFront(list, &data);
+  // }
+  // int a = 666;
+  // ListPosInsert(list, 2, &a);
 
-  ListPrint(list, PrintInt);
-  for (int i = 0; i < 1; i++) {
-    ListPopBack(list);
-    ListPopFront(list);
-  }
-  ListPosErase(list, 1);
-  ListPosErase(list, 0);
-  ListPosErase(list, ListSize(list) - 1);
+  // ListPrint(list, PrintInt);
+  // for (int i = 0; i < 1; i++) {
+  //   ListPopBack(list);
+  //   ListPopFront(list);
+  // }
+  // ListPosErase(list, 1);
+  // ListPosErase(list, 0);
+  // ListPosErase(list, ListSize(list) - 1);
 
-  ListRandomInsertIntData(list, 13, 520);
+  ListRandomInsertIntData(list, 13, 5);
 
   ListPrint(list, PrintInt);
   ListSort(list, CmpInt);
@@ -61,7 +70,10 @@ void test_int() {
 
   printf("list size: %zu\n", ListSize(list));
   printf("list capacity: %zu\n", ListCapacity(list));
-
+  printf("find data index is %zu\n",
+         ListFindData(list, SendData(), CmpInt));
+  printf("find data index is %zu\n",
+         ListFindData(list, SendData(), CmpInt));
   ListDestory(list);
 }
 void test_double() {
@@ -86,8 +98,8 @@ void test_double() {
 }
 int main(void) {
   srand((unsigned int)time(NULL));
-  // test_int();
-  test_double();
+  test_int();
+  // test_double();
 
   return 0;
 }
