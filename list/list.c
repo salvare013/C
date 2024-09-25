@@ -235,3 +235,10 @@ size_t ListFindData(List *pList,
   }
   return pList->size;
 }
+void ListIndexAccess(const List *pList,
+                     const size_t index,
+                     void (*pfPrint)(const void *)) {
+  assert(pList && pfPrint);
+  assert(index < pList->size);
+  pfPrint(pList->data + pList->dataSize * index);
+}

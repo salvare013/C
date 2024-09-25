@@ -1,6 +1,7 @@
 #pragma once
 
 #include <assert.h>
+#include <crtdefs.h>
 #include <stdbool.h>
 #include <stdio.h>   // IWYU pragma: export
 #include <stdlib.h>  // IWYU pragma: export
@@ -54,3 +55,6 @@ void ListClear(List *pList);
 size_t ListFindData(List *pList,
                     const void *findData,
                     int (*pfCmp)(const void *, const void *));
+void ListIndexAccess(const List *pList,
+                     const size_t index,
+                     void (*pfPrint)(const void *));

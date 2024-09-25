@@ -1,11 +1,12 @@
+#include <crtdefs.h>
 #include <stdio.h>
+#include <time.h>
 #include "list.h"
 
-const void *SendData() {
-  static int data;
-  printf("输入>>>");
-  scanf("%d", &data);
-  return &data;
+void PrintPeople(const void *data) {
+  printf("name:%-10s\tage:%2d\tsex:%-4s\n",
+         DRFPTR(People, data).name, DRFPTR(People, data).age,
+         DRFPTR(People, data).sex);
 }
 void ModifyInt(void *data) {
   int *d = (int *)data;
@@ -14,7 +15,7 @@ void ModifyInt(void *data) {
 void ModifyDouble(void *data) {
   // printf("输入>>>");
   // scanf("%lf", (double *)data);
-  *(double *)data = 0.12345;
+  *(double *)data = 0.123456;
 }
 void PrintInt(const void *data) {
   printf("%d ", *(int *)data);
@@ -57,18 +58,28 @@ void test_int() {
   // ListPosErase(list, 0);
   // ListPosErase(list, ListSize(list) - 1);
 
-  ListRandomInsertIntData(list, 13, 5);
+  ListRandomInsertIntData(list, 1234, 666);
 
-  ListPrint(list, PrintInt);
+  // ListPrint(list, PrintInt);
   ListSort(list, CmpInt);
-  ListPrint(list, PrintInt);
+  // ListPrint(list, PrintInt);
 
   printf("list size: %zu\n", ListSize(list));
   printf("list capacity: %zu\n", ListCapacity(list));
-  printf("find data index is %zu\n",
-         ListFindData(list, SendData(), CmpInt));
-  printf("find data index is %zu\n",
-         ListFindData(list, SendData(), CmpInt));
+  size_t index;
+  while (1) {
+    int data;
+    printf("输入>>>");
+    scanf("%d", &data);
+    index = ListFindData(list, &data, CmpInt);
+    if (index == ListSize(list)) {
+      printf("找不到该数据,请重新输入!\n");
+    } else {
+      break;
+    }
+  }
+  printf("find data index is %zu\n", index);
+  ListIndexAccess(list, index, PrintInt);
   ListDestory(list);
 }
 void test_double() {
@@ -86,15 +97,24 @@ void test_double() {
          DRFPTR(double, ListHeadData(list)));
   printf("list tail data is %lf\n",
          DRFPTR(double, ListTailData(list)));
-  ListClear(list);
+  // ListClear(list);
   printf("list size: %zu\n", ListSize(list));
   printf("list capacity: %zu\n", ListCapacity(list));
+  size_t index;
+  while (1) {
+    double data;
+    printf("输入>>>");
+    scanf("%lf", &data);
+    index = ListFindData(list, &data, CmpInt);
+    if (index == ListSize(list)) {
+      printf("找不到该数据,请重新输入!\n");
+    } else {
+      break;
+    }
+  }
+  printf("find data index is %zu\n", index);
+  ListIndexAccess(list, index, PrintDouble);
   ListDestory(list);
-}
-void PrintPeople(const void *data) {
-  printf("name:%-10s\tage:%2d\tsex:%-4s\n",
-         DRFPTR(People, data).name, DRFPTR(People, data).age,
-         DRFPTR(People, data).sex);
 }
 void test_struct() {
   List *list = mListCreate(People);
@@ -114,8 +134,8 @@ void test_struct() {
 int main(void) {
   srand((unsigned int)time(NULL));
   // test_int();
-  // test_double();
-  test_struct();
+  test_double();
+  // test_struct();
 
   return 0;
 }
