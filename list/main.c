@@ -1,9 +1,4 @@
-#include <crtdefs.h>
-#include <stdbool.h>
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <time.h>
 #include "list.h"
 
 const void *SendData() {
@@ -96,10 +91,31 @@ void test_double() {
   printf("list capacity: %zu\n", ListCapacity(list));
   ListDestory(list);
 }
+void PrintPeople(const void *data) {
+  printf("name:%-10s\tage:%2d\tsex:%-4s\n",
+         DRFPTR(People, data).name, DRFPTR(People, data).age,
+         DRFPTR(People, data).sex);
+}
+void test_struct() {
+  List *list = mListCreate(People);
+  People p;
+  for (int i = 0; i < 3; i++) {
+    printf("输入姓名>>>");
+    scanf("%s", p.name);
+    printf("输入年龄>>>");
+    scanf("%d", &p.age);
+    printf("输入性别>>>");
+    scanf("%s", p.sex);
+    ListPushBack(list, &p);
+  }
+  ListPrint(list, PrintPeople);
+  ListDestory(list);
+}
 int main(void) {
   srand((unsigned int)time(NULL));
-  test_int();
+  // test_int();
   // test_double();
+  test_struct();
 
   return 0;
 }

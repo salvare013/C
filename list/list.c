@@ -1,11 +1,4 @@
 #include "list.h"
-#include <assert.h>
-#include <crtdefs.h>
-#include <stdbool.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <time.h>
 
 List *ListCreate(size_t dataSize) {
   List *list = (List *)malloc(sizeof(List));

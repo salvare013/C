@@ -1,8 +1,11 @@
 #pragma once
 
-#include <crtdefs.h>
+#include <assert.h>
 #include <stdbool.h>
-#include <stdio.h>  // IWYU pragma: export
+#include <stdio.h>   // IWYU pragma: export
+#include <stdlib.h>  // IWYU pragma: export
+#include <string.h>  // IWYU pragma: export
+#include <time.h>    // IWYU pragma: export
 
 typedef struct {
   void *data;
@@ -10,6 +13,12 @@ typedef struct {
   size_t size;
   size_t capacity;
 } List;
+
+typedef struct {
+  char name[20];
+  int age;
+  char sex[10];
+} People;
 
 #define DEFAULT_CAPACITY 4
 #define DRFPTR(type, ptr) (*(type *)ptr)
