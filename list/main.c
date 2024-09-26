@@ -9,7 +9,7 @@ int CmpPeopleAge(const void *e1, const void *e2) {
   return DRFPTR(People, e1).age - DRFPTR(People, e2).age;
 }
 int CmpPeopleName(const void *e1, const void *e2) {
-  return strcmp(((People *)e1)->name, ((People *)e2)->name);
+  return strcmp(DRFPTR(People, e1).name, DRFPTR(People, e2).name);
 }
 void PrintPeople(const void *data) {
   printf("name:%-10s\tage:%2d\n", DRFPTR(People, data).name,
@@ -141,10 +141,10 @@ void test_struct() {
   while (1) {
     People p;
     printf("输入>>>");
-    // scanf("%s", p.name);
-    scanf("%d", &p.age);
-    index = ListFindData(list, &p, CmpPeopleAge);
-    // index = ListFindData(list, &p, CmpPeopleName);
+    scanf("%s", p.name);
+    // scanf("%d", &p.age);
+    // index = ListFindData(list, &p, CmpPeopleAge);
+    index = ListFindData(list, &p, CmpPeopleName);
     if (index == ListSize(list)) {
       printf("找不到该数据,请重新输入!\n");
     } else {
