@@ -1,12 +1,19 @@
-#include <crtdefs.h>
-#include <stdio.h>
-#include <time.h>
 #include "list.h"
 
+typedef struct {
+  char name[20];
+  int age;
+} People;
+
+int CmpPeopleAge(const void *e1, const void *e2) {
+  return DRFPTR(People, e1).age - DRFPTR(People, e2).age;
+}
+int CmpPeopleName(const void *e1, const void *e2) {
+  return strcmp(((People *)e1)->name, ((People *)e2)->name);
+}
 void PrintPeople(const void *data) {
-  printf("name:%-10s\tage:%2d\tsex:%-4s\n",
-         DRFPTR(People, data).name, DRFPTR(People, data).age,
-         DRFPTR(People, data).sex);
+  printf("name:%-10s\tage:%2d\n", DRFPTR(People, data).name,
+         DRFPTR(People, data).age);
 }
 void ModifyInt(void *data) {
   int *d = (int *)data;
@@ -124,18 +131,35 @@ void test_struct() {
     scanf("%s", p.name);
     printf("输入年龄>>>");
     scanf("%d", &p.age);
-    printf("输入性别>>>");
-    scanf("%s", p.sex);
     ListPushBack(list, &p);
   }
   ListPrint(list, PrintPeople);
+  // ListSort(list, CmpPeopleAge);
+  ListSort(list, CmpPeopleName);
+  ListPrint(list, PrintPeople);
+  size_t index;
+  while (1) {
+    People p;
+    printf("输入>>>");
+    // scanf("%s", p.name);
+    scanf("%d", &p.age);
+    index = ListFindData(list, &p, CmpPeopleAge);
+    // index = ListFindData(list, &p, CmpPeopleName);
+    if (index == ListSize(list)) {
+      printf("找不到该数据,请重新输入!\n");
+    } else {
+      break;
+    }
+  }
+  printf("find data index is %zu\n", index);
+  ListIndexAccess(list, index, PrintPeople);
   ListDestory(list);
 }
 int main(void) {
   srand((unsigned int)time(NULL));
   // test_int();
-  test_double();
-  // test_struct();
+  // test_double();
+  test_struct();
 
   return 0;
 }

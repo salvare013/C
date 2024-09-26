@@ -1,5 +1,4 @@
 #pragma once
-
 #include <assert.h>
 #include <crtdefs.h>
 #include <stdbool.h>
@@ -14,12 +13,6 @@ typedef struct {
   size_t size;
   size_t capacity;
 } List;
-
-typedef struct {
-  char name[20];
-  int age;
-  char sex[10];
-} People;
 
 #define DEFAULT_CAPACITY 4
 #define DRFPTR(type, ptr) (*(type *)ptr)
