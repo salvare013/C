@@ -20,5 +20,5 @@ add_executable (${PROJECT_NAME} ${SRC_LIST})
 # target_link_libraries(${PROJECT_NAME} ${LIB_LIST})
 
 # 生成动态库
-# add_library(PRO_DLL_LIB SHARED ./1.c)
+# add_library(PRO_DLL_LIB SHARED ./list.c)
 # set_target_properties(PRO_DLL_LIB PROPERTIES OUTPUT_NAME ${PROJECT_NAME})
