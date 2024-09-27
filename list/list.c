@@ -1,6 +1,7 @@
 #include "list.h"
 
 List *ListCreate(size_t dataSize) {
+  assert(dataSize);
   List *list = (List *)malloc(sizeof(List));
   if (NULL == list) {
     printf("malloc fail!\n");
