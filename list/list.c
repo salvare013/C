@@ -105,7 +105,7 @@ void ListPopFront(List *pList) {
     pList->size--;
   }
 }
-void ListPosInsert(List *pList, size_t pos, const void *data) {
+void ListPosInsert(List *pList, const size_t pos, const void *data) {
   assert(pList && data);
   assert(pos < pList->size);
   if (CheckCapacity(pList, 1)) {
@@ -119,7 +119,7 @@ void ListPosInsert(List *pList, size_t pos, const void *data) {
     pList->size++;
   }
 }
-void ListPosErase(List *pList, size_t pos) {
+void ListPosErase(List *pList, const size_t pos) {
   assert(pList);
   assert(pos < pList->size);
   if (pList->size) {
@@ -200,12 +200,12 @@ size_t ListResize(List *pList, size_t size) {
   }
   return pList->size;
 }
-void *ListDataAt(List *pList, size_t index) {
+const void *ListDataAt(List *pList, const size_t index) {
   assert(pList);
   assert(index < pList->size);
   return pList->data + pList->dataSize * index;
 }
-void *ListHeadData(List *pList) {
+const void *ListHeadData(List *pList) {
   assert(pList);
   if (pList->size) {
     return pList->data;
@@ -213,7 +213,7 @@ void *ListHeadData(List *pList) {
     return NULL;
   }
 }
-void *ListTailData(List *pList) {
+const void *ListTailData(List *pList) {
   assert(pList);
   if (pList->size) {
     return pList->data + pList->dataSize * (pList->size - 1);

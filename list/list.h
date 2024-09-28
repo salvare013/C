@@ -28,8 +28,8 @@ size_t ListSize(List *pList);
 size_t ListCapacity(List *pList);
 void ListPushFront(List *pList, const void *data);
 void ListPopFront(List *pList);
-void ListPosInsert(List *pList, size_t pos, const void *data);
-void ListPosErase(List *pList, size_t pos);
+void ListPosInsert(List *pList, const size_t pos, const void *data);
+void ListPosErase(List *pList, const size_t pos);
 void ListRandomInsertIntData(List *pList,
                              size_t count,
                              size_t maxNum);
@@ -41,9 +41,9 @@ void ListDataModify(List *pList,
 bool ListIsEmpty(List *pList);
 bool ListReserve(List *pList, size_t size);
 size_t ListResize(List *pList, size_t size);
-void *ListDataAt(List *pList, size_t index);
-void *ListHeadData(List *pList);
-void *ListTailData(List *pList);
+const void *ListDataAt(List *pList, const size_t index);
+const void *ListHeadData(List *pList);
+const void *ListTailData(List *pList);
 void ListClear(List *pList);
 size_t ListFindData(List *pList,
                     const void *findData,
