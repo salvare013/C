@@ -169,7 +169,7 @@ void ListRandomInsertDoubleData(List *pList, size_t count) {
   }
 }
 void ListDataModify(List *pList,
-                    size_t pos,
+                    const size_t pos,
                     void (*pfModify)(void *)) {
   assert(pList && pfModify);
   assert(pos < pList->size);

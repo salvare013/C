@@ -36,7 +36,7 @@ void ListRandomInsertIntData(List *pList,
 void ListSort(List *pList, int (*pfCmp)(const void *, const void *));
 void ListRandomInsertDoubleData(List *pList, size_t count);
 void ListDataModify(List *pList,
-                    size_t pos,
+                    const size_t pos,
                     void (*pfModify)(void *));
 bool ListIsEmpty(List *pList);
 bool ListReserve(List *pList, size_t size);
