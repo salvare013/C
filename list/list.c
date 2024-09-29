@@ -85,7 +85,7 @@ size_t ListCapacity(List *pList) {
 void ListPushFront(List *pList, const void *data) {
   assert(pList && data);
   if (CheckCapacity(pList, 1)) {
-    for (int i = pList->size; i > 0; i--) {
+    for (size_t i = pList->size; i > 0; i--) {
       memcpy(pList->data + i * pList->dataSize,
              pList->data + (i - 1) * pList->dataSize,
              pList->dataSize);
@@ -97,7 +97,7 @@ void ListPushFront(List *pList, const void *data) {
 void ListPopFront(List *pList) {
   assert(pList);
   if (pList->size) {
-    for (int i = 0; i < pList->size; i++) {
+    for (size_t i = 0; i < pList->size; i++) {
       memcpy(pList->data + i * pList->dataSize,
              pList->data + (i + 1) * pList->dataSize,
              pList->dataSize);
@@ -109,7 +109,7 @@ void ListPosInsert(List *pList, const size_t pos, const void *data) {
   assert(pList && data);
   assert(pos < pList->size);
   if (CheckCapacity(pList, 1)) {
-    for (int i = pList->size; i > pos; i--) {
+    for (size_t i = pList->size; i > pos; i--) {
       memcpy(pList->data + i * pList->dataSize,
              pList->data + (i - 1) * pList->dataSize,
              pList->dataSize);
@@ -123,7 +123,7 @@ void ListPosErase(List *pList, const size_t pos) {
   assert(pList);
   assert(pos < pList->size);
   if (pList->size) {
-    for (int i = pos; i < pList->size; i++) {
+    for (size_t i = pos; i < pList->size; i++) {
       memcpy(pList->data + i * pList->dataSize,
              pList->data + (i + 1) * pList->dataSize,
              pList->dataSize);
@@ -138,7 +138,7 @@ void ListRandomInsertIntData(List *pList,
   assert(maxNum + 1 < RAND_MAX);
   if (CheckCapacity(pList, count)) {
     int data = 0;
-    for (int i = 0; i < count; i++) {
+    for (size_t i = 0; i < count; i++) {
       data = rand() % (maxNum + 1);
       memcpy(pList->data + pList->dataSize * pList->size, &data,
              sizeof(int));
@@ -160,7 +160,7 @@ void ListRandomInsertDoubleData(List *pList, size_t count) {
   assert(pList);
   if (CheckCapacity(pList, count)) {
     double data = 0;
-    for (int i = 0; i < count; i++) {
+    for (size_t i = 0; i < count; i++) {
       data = (double)rand() / RAND_MAX;
       memcpy(pList->data + pList->dataSize * pList->size, &data,
              sizeof(double));
@@ -229,7 +229,7 @@ void *ListFindData(List *pList,
                    const void *findData,
                    int (*pfCmp)(const void *, const void *)) {
   assert(pList && findData && pfCmp);
-  for (int i = 0; i < pList->size; i++) {
+  for (size_t i = 0; i < pList->size; i++) {
     if (0 == pfCmp(findData, pList->data + pList->dataSize * i)) {
       return pList->data + pList->dataSize * i;
     }
@@ -241,7 +241,7 @@ const size_t ListFindDataAt(List *pList,
                             int (*pfCmp)(const void *,
                                          const void *)) {
   assert(pList && findData && pfCmp);
-  for (int i = 0; i < pList->size; i++) {
+  for (size_t i = 0; i < pList->size; i++) {
     if (0 == pfCmp(findData, pList->data + pList->dataSize * i)) {
       return i;
     }
