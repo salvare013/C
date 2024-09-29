@@ -18,13 +18,17 @@ void PrintPeople(const void *data) {
          DRFPTR(People, data).age);
 }
 void ModifyInt(void *data) {
-  int *d = (int *)data;
-  *d = 666666;
+  printf("输入要查找的数据>>>");
+  scanf("%d", (int *)data);
 }
 void ModifyDouble(void *data) {
   // printf("输入>>>");
   // scanf("%lf", (double *)data);
   *(double *)data = 0.123456;
+}
+void ModifyPeopleName(void *data) {
+  printf("输入姓名>>>");
+  scanf("%s", DRFPTR(People, data).name);
 }
 void PrintInt(const void *data) {
   printf("%d ", *(int *)data);
@@ -76,10 +80,11 @@ void test_int() {
   printf("list size: %zu\n", ListSize(list));
   printf("list capacity: %zu\n", ListCapacity(list));
   while (1) {
-    int find;
-    printf(">>>");
-    scanf("%d", &find);
-    int *data = ListFindData(list, &find, CmpInt);
+    // int find;
+    // printf(">>>");
+    // scanf("%d", &find);
+    int *data =
+        ListFindData(list, mListSendData(int, ModifyInt), CmpInt);
     if (NULL == data) {
       printf("找不到该数据,请重新输入!\n");
     } else {
@@ -138,10 +143,9 @@ void test_struct() {
   ListSort(list, CmpPeopleName);
   ListPrint(list, PrintPeople);
   while (1) {
-    People p;
-    printf(">>>");
-    scanf("%d", &p.age);
-    People *data = ListFindData(list, &p, CmpPeopleAge);
+    People *data =
+        ListFindData(list, mListSendData(People, ModifyPeopleName),
+                     CmpPeopleName);
     if (NULL == data) {
       printf("找不到该数据,请重新输入!\n");
     } else {
@@ -153,9 +157,9 @@ void test_struct() {
 }
 int main(void) {
   srand((unsigned int)time(NULL));
-  test_int();
+  // test_int();
   // test_double();
-  // test_struct();
+  test_struct();
 
   return 0;
 }

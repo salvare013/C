@@ -18,7 +18,7 @@ typedef struct {
 #define DEFAULT_CAPACITY 4
 #define DRFPTR(type, ptr) (*(type *)ptr)
 
-List *ListCreate(size_t dataSize);
+List *ListCreate(const size_t dataSize);
 #define mListCreate(TYPE) ListCreate(sizeof(TYPE))
 void ListDestory(List *pList);
 bool CheckCapacity(List *pList, size_t insertSize);
@@ -57,3 +57,7 @@ void ListIndexAccess(const List *pList,
                      const size_t index,
                      void (*pfPrint)(const void *));
 void ListPrintData(const void *data, void (*pfPrint)(const void *));
+const void *ListSendData(const size_t dataSize,
+                         void (*pfModify)(void *));
+#define mListSendData(type, pfModify) \
+  ListSendData(sizeof(type), pfModify)

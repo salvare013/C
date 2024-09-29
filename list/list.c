@@ -1,6 +1,6 @@
 #include "list.h"
 
-List *ListCreate(size_t dataSize) {
+List *ListCreate(const size_t dataSize) {
   assert(dataSize);
   List *list = (List *)malloc(sizeof(List));
   if (NULL == list) {
@@ -258,4 +258,15 @@ void ListIndexAccess(const List *pList,
 void ListPrintData(const void *data, void (*pfPrint)(const void *)) {
   assert(data && pfPrint);
   pfPrint(data);
+}
+const void *ListSendData(const size_t dataSize,
+                         void (*pfModify)(void *)) {
+  assert(dataSize && pfModify);
+  void *data = malloc(dataSize);
+  if (NULL == data) {
+    printf("%s\n", strerror(errno));
+    return NULL;
+  }
+  pfModify(data);
+  return data;
 }
