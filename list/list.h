@@ -57,7 +57,3 @@ void ListIndexAccess(const List *pList,
                      const size_t index,
                      void (*pfPrint)(const void *));
 void ListPrintData(const void *data, void (*pfPrint)(const void *));
-const void *ListSendData(const size_t dataSize,
-                         void (*pfModify)(void *));
-#define mListSendData(type, pfModify) \
-  ListSendData(sizeof(type), pfModify)

@@ -259,14 +259,3 @@ void ListPrintData(const void *data, void (*pfPrint)(const void *)) {
   assert(data && pfPrint);
   pfPrint(data);
 }
-const void *ListSendData(const size_t dataSize,
-                         void (*pfModify)(void *)) {
-  assert(dataSize && pfModify);
-  void *data = malloc(dataSize);
-  if (NULL == data) {
-    printf("%s\n", strerror(errno));
-    return NULL;
-  }
-  pfModify(data);
-  return data;
-}

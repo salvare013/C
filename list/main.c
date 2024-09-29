@@ -80,11 +80,10 @@ void test_int() {
   printf("list size: %zu\n", ListSize(list));
   printf("list capacity: %zu\n", ListCapacity(list));
   while (1) {
-    // int find;
-    // printf(">>>");
-    // scanf("%d", &find);
-    int *data =
-        ListFindData(list, mListSendData(int, ModifyInt), CmpInt);
+    int find;
+    printf(">>>");
+    scanf("%d", &find);
+    int *data = ListFindData(list, &find, CmpInt);
     if (NULL == data) {
       printf("找不到该数据,请重新输入!\n");
     } else {
@@ -143,9 +142,10 @@ void test_struct() {
   ListSort(list, CmpPeopleName);
   ListPrint(list, PrintPeople);
   while (1) {
-    People *data =
-        ListFindData(list, mListSendData(People, ModifyPeopleName),
-                     CmpPeopleName);
+    People p;
+    printf("输入姓名>>>");
+    scanf("%s", p.name);
+    People *data = ListFindData(list, &p, CmpPeopleName);
     if (NULL == data) {
       printf("找不到该数据,请重新输入!\n");
     } else {
