@@ -34,14 +34,14 @@ bool CheckCapacity(List *pList, size_t insertSize) {
     return true;
   }
   if (insertSize > 1) {
-    void *ptr = realloc(pList->data, (pList->capacity + insertSize) *
-                                         pList->dataSize);
+    void *ptr = realloc(
+        pList->data, (pList->size + insertSize) * pList->dataSize);
     if (NULL == ptr) {
       printf("realloc fail!\n");
       return false;
     }
     pList->data = ptr;
-    pList->capacity = pList->capacity + insertSize;
+    pList->capacity = pList->size + insertSize;
     return true;
   } else {
     void *ptr =
