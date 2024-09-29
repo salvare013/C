@@ -41,13 +41,18 @@ void ListDataModify(List *pList,
 bool ListIsEmpty(List *pList);
 bool ListReserve(List *pList, size_t size);
 size_t ListResize(List *pList, size_t size);
-const void *ListDataAt(List *pList, const size_t index);
-const void *ListHeadData(List *pList);
-const void *ListTailData(List *pList);
+void *ListDataAt(List *pList, const size_t index);
+void *ListHeadData(List *pList);
+void *ListTailData(List *pList);
 void ListClear(List *pList);
-size_t ListFindData(List *pList,
-                    const void *findData,
-                    int (*pfCmp)(const void *, const void *));
+void *ListFindData(List *pList,
+                   const void *findData,
+                   int (*pfCmp)(const void *, const void *));
+const size_t ListFindDataAt(List *pList,
+                            const void *findData,
+                            int (*pfCmp)(const void *,
+                                         const void *));
 void ListIndexAccess(const List *pList,
                      const size_t index,
                      void (*pfPrint)(const void *));
+void ListPrintData(const void *data, void (*pfPrint)(const void *));

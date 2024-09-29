@@ -1,4 +1,6 @@
 #include "list.h"
+#include <crtdefs.h>
+#include <time.h>
 
 List *ListCreate(size_t dataSize) {
   assert(dataSize);
@@ -69,7 +71,7 @@ void ListPopBack(List *pList) {
 }
 void ListPrint(const List *pList, void (*pfPrint)(const void *)) {
   assert(pList);
-  for (int i = 0; i < pList->size; i++) {
+  for (size_t i = 0; i < pList->size; i++) {
     pfPrint(pList->data + pList->dataSize * i);
   }
   printf("\n");
@@ -200,12 +202,12 @@ size_t ListResize(List *pList, size_t size) {
   }
   return pList->size;
 }
-const void *ListDataAt(List *pList, const size_t index) {
+void *ListDataAt(List *pList, const size_t index) {
   assert(pList);
   assert(index < pList->size);
   return pList->data + pList->dataSize * index;
 }
-const void *ListHeadData(List *pList) {
+void *ListHeadData(List *pList) {
   assert(pList);
   if (pList->size) {
     return pList->data;
@@ -213,7 +215,7 @@ const void *ListHeadData(List *pList) {
     return NULL;
   }
 }
-const void *ListTailData(List *pList) {
+void *ListTailData(List *pList) {
   assert(pList);
   if (pList->size) {
     return pList->data + pList->dataSize * (pList->size - 1);
@@ -225,9 +227,21 @@ void ListClear(List *pList) {
   assert(pList);
   pList->size = 0;
 }
-size_t ListFindData(List *pList,
-                    const void *findData,
-                    int (*pfCmp)(const void *, const void *)) {
+void *ListFindData(List *pList,
+                   const void *findData,
+                   int (*pfCmp)(const void *, const void *)) {
+  assert(pList && findData && pfCmp);
+  for (int i = 0; i < pList->size; i++) {
+    if (0 == pfCmp(findData, pList->data + pList->dataSize * i)) {
+      return pList->data + pList->dataSize * i;
+    }
+  }
+  return NULL;
+}
+const size_t ListFindDataAt(List *pList,
+                            const void *findData,
+                            int (*pfCmp)(const void *,
+                                         const void *)) {
   assert(pList && findData && pfCmp);
   for (int i = 0; i < pList->size; i++) {
     if (0 == pfCmp(findData, pList->data + pList->dataSize * i)) {
@@ -242,4 +256,8 @@ void ListIndexAccess(const List *pList,
   assert(pList && pfPrint);
   assert(index < pList->size);
   pfPrint(pList->data + pList->dataSize * index);
+}
+void ListPrintData(const void *data, void (*pfPrint)(const void *)) {
+  assert(data && pfPrint);
+  pfPrint(data);
 }

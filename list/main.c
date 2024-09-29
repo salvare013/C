@@ -1,3 +1,5 @@
+#include <stdio.h>
+#include <time.h>
 #include "list.h"
 
 typedef struct {
@@ -65,7 +67,7 @@ void test_int() {
   // ListPosErase(list, 0);
   // ListPosErase(list, ListSize(list) - 1);
 
-  ListRandomInsertIntData(list, 1234, 666);
+  ListRandomInsertIntData(list, 6666, 1314);
 
   // ListPrint(list, PrintInt);
   ListSort(list, CmpInt);
@@ -73,20 +75,18 @@ void test_int() {
 
   printf("list size: %zu\n", ListSize(list));
   printf("list capacity: %zu\n", ListCapacity(list));
-  size_t index;
   while (1) {
-    int data;
-    printf("输入>>>");
-    scanf("%d", &data);
-    index = ListFindData(list, &data, CmpInt);
-    if (index == ListSize(list)) {
+    int find;
+    printf(">>>");
+    scanf("%d", &find);
+    int *data = ListFindData(list, &find, CmpInt);
+    if (NULL == data) {
       printf("找不到该数据,请重新输入!\n");
     } else {
+      ListPrintData(data, PrintInt);
       break;
     }
   }
-  printf("find data index is %zu\n", index);
-  ListIndexAccess(list, index, PrintInt);
   ListDestory(list);
 }
 void test_double() {
@@ -112,7 +112,7 @@ void test_double() {
     double data;
     printf("输入>>>");
     scanf("%lf", &data);
-    index = ListFindData(list, &data, CmpInt);
+    index = ListFindDataAt(list, &data, CmpInt);
     if (index == ListSize(list)) {
       printf("找不到该数据,请重新输入!\n");
     } else {
@@ -137,29 +137,25 @@ void test_struct() {
   // ListSort(list, CmpPeopleAge);
   ListSort(list, CmpPeopleName);
   ListPrint(list, PrintPeople);
-  size_t index;
   while (1) {
     People p;
-    printf("输入>>>");
-    scanf("%s", p.name);
-    // scanf("%d", &p.age);
-    // index = ListFindData(list, &p, CmpPeopleAge);
-    index = ListFindData(list, &p, CmpPeopleName);
-    if (index == ListSize(list)) {
+    printf(">>>");
+    scanf("%d", &p.age);
+    People *data = ListFindData(list, &p, CmpPeopleAge);
+    if (NULL == data) {
       printf("找不到该数据,请重新输入!\n");
     } else {
+      ListPrintData(data, PrintPeople);
       break;
     }
   }
-  printf("find data index is %zu\n", index);
-  ListIndexAccess(list, index, PrintPeople);
   ListDestory(list);
 }
 int main(void) {
   srand((unsigned int)time(NULL));
-  test_int();
+  // test_int();
   // test_double();
-  // test_struct();
+  test_struct();
 
   return 0;
 }
