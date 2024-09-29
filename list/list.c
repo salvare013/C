@@ -1,17 +1,15 @@
 #include "list.h"
-#include <crtdefs.h>
-#include <time.h>
 
 List *ListCreate(size_t dataSize) {
   assert(dataSize);
   List *list = (List *)malloc(sizeof(List));
   if (NULL == list) {
-    printf("malloc fail!\n");
+    printf("%s\n", strerror(errno));
     exit(-1);
   }
   void *ptr = malloc(DEFAULT_CAPACITY * dataSize);
   if (NULL == ptr) {
-    printf("malloc fail!\n");
+    printf("%s\n", strerror(errno));
     exit(-1);
   }
   list->data = ptr;
@@ -37,7 +35,7 @@ bool CheckCapacity(List *pList, size_t insertSize) {
     void *ptr = realloc(
         pList->data, (pList->size + insertSize) * pList->dataSize);
     if (NULL == ptr) {
-      printf("realloc fail!\n");
+      printf("%s\n", strerror(errno));
       return false;
     }
     pList->data = ptr;
@@ -47,7 +45,7 @@ bool CheckCapacity(List *pList, size_t insertSize) {
     void *ptr =
         realloc(pList->data, 2 * pList->capacity * pList->dataSize);
     if (NULL == ptr) {
-      printf("realloc fail!\n");
+      printf("%s\n", strerror(errno));
       return false;
     }
     pList->data = ptr;

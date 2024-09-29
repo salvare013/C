@@ -1,6 +1,7 @@
 #pragma once
 #include <assert.h>
 #include <crtdefs.h>
+#include <errno.h>  // IWYU pragma: export
 #include <stdbool.h>
 #include <stdio.h>   // IWYU pragma: export
 #include <stdlib.h>  // IWYU pragma: export
