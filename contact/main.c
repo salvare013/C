@@ -1,59 +1,47 @@
 #include "contact.h"
 
-static void Menu() {
-  printf("*************************************\n");
-  printf("***      1.add      2.del         ***\n");
-  printf("***      3.search   4.modify      ***\n");
-  printf("***      5.show     6.sort        ***\n");
-  printf("***      7.save     0.exit        ***\n");
-  printf("*************************************\n");
-}
-int main() {
-  int input = 0;
-  struct Contact con;
-  InitContact(&con);
+void contact() {
+  List *contact = mListCreate(Contact);
+  ContactLoad(contact, "./contact.txt");
+  int flag;
   do {
     Menu();
-    printf("请选择:>");
-    scanf("%d", &input);
-    switch (input) {
-      case EXIT: {
-        int choose = 0;
-        printf("是否保存?\n");
-        printf("请选择:\nYes(1) or No(0)\t>");
-        scanf("%d", &choose);
-        if (choose == 1) {
-          SaveCon(&con);
-        }
-        DestroyCon(&con);
-        printf("退出!\n");
-      } break;
+    printf("请选择>>>");
+    scanf("%d", &flag);
+    switch (flag) {
+      case EXIT:
+        ListDestory(contact);
+        printf("退出程序!\n");
+        break;
       case ADD:
-        AddCon(&con);
+        ListPushBack(contact, SendData());
         break;
       case DEL:
-        DelCon(&con);
+        ContactDel(contact);
         break;
-      case SEARCH:
-        SearchCon(&con);
+      case FIND:
+        ContactFind(contact);
         break;
       case MODIFY:
-        ModifyCon(&con);
+        ContactModify(contact);
         break;
       case SHOW:
-        ShowCon(&con);
+        ListPrint(contact, PrintContact);
         break;
       case SORT:
-        SortCon(&con);
+        ListSort(contact, CmpName);
         break;
       case SAVE:
-        SaveCon(&con);
+        ContactSave(contact, "./contact.txt");
         break;
       default:
-        printf("选择错误!\n");
+        printf("请重新选择!\n");
         break;
     }
-  } while (input);
+  } while (flag);
+}
+int main(void) {
+  contact();
 
   return 0;
 }
