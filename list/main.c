@@ -157,9 +157,9 @@ void test_struct() {
 }
 int main(void) {
   srand((unsigned int)time(NULL));
-  // test_int();
+  test_int();
   // test_double();
-  test_struct();
+  // test_struct();
 
   return 0;
 }
